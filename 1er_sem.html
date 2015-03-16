@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<script src="scripts/jquery-1.11.2.min.js"></script>
+<script src="scripts/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+	<div data-role="page" id="pageone">
+
+		<div data-role="header">
+			<h1>INGENIERIA</h1>
+			<h2>HORARIO</h2>
+		</div>
+		<!-- /header -->
+		<div data-role="main" class="ui-content">
+			<h4>Primer Semestre</h4>
+			<ul id="listacursos" class="listaCursos" data-role="listview" data-autodividers="true"
+				data-filter="true"
+				data-filter-placeholder="Ingresa nombre del curso..."
+				data-inset="true">
+			</ul>
+		</div>
+		<script>
+			var periodo = 1;
+		</script>
+
+
+		<script src="scripts/filtros.js">
+		</script>
+
+		<div data-role="footer">
+			<h4>USAC</h4>
+		</div>
+		<!-- /footer -->
+
+	</div>
+
+</body>
+</html>
+

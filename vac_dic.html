@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<script src="scripts/jquery-1.11.2.min.js"></script>
+<script src="scripts/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+	<div data-role="page" id="pageone">
+
+		<div data-role="header">
+			<h1>Horario</h1>
+			<h2>Ingeniería</h2>
+		</div>
+		<!-- /header -->
+		<div data-role="main" class="ui-content">
+			<h2>Vacaciones Diciembre</h2>
+			<ul class="listaCursos" data-role="listview" data-autodividers="true"
+				data-filter="true"
+				data-filter-placeholder="Ingresa nombre del curso..."
+				data-inset="true">
+			</ul>
+		</div>
+
+		<script>
+			(function() {
+				var url = "http://icon-c0107:8080/HorarioUsac/servicios/horarios?id=1";
+				$
+						.getJSON(url, {})
+						.done(
+								function(result) {
+
+									console.log('Cantidad de Cursos: '
+											+ result.length);
+									var list = "";
+									var nombreCurso = "";
+									for (var i = 0, l = result.length; i < l; i++) {
+										nombreCurso = "<a href=\"#\">"
+												+ result[i]["nombreCurso"]
+												+ "</a>";
+										$('<li />', {
+											html : nombreCurso
+										}).appendTo('ul.listaCursos')
+									}
+
+									$('ul').listview('refresh');
+								});
+			})();
+		</script>
+
+		<div data-role="footer">
+			<h4>USAC</h4>
+		</div>
+		<!-- /footer -->
+
+	</div>
+
+</body>
+</html>
+
