@@ -12,14 +12,15 @@
 	<div data-role="page" id="pageone">
 
 		<div data-role="header">
-			<h1>INGENIERIA</h1>
-			<h2>HORARIO</h2>
+			<a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+			<a href="index.html" data-icon="home" data-iconpos="notext">Inicio</a>
+			<h1>Mi Horario</h1>
 		</div>
 		<!-- /header -->
 		<div data-role="main" class="ui-content">
 			<h4>Primer Semestre</h4>
-			<ul id="listacursos" class="listaCursos" data-role="listview" data-autodividers="true"
-				data-filter="true"
+			<ul id="listacursos" class="listaCursos" data-role="listview"
+				data-autodividers="true" data-filter="true"
 				data-filter-placeholder="Ingresa nombre del curso..."
 				data-inset="true">
 			</ul>
@@ -28,15 +29,48 @@
 			var periodo = 1;
 		</script>
 
+<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="nav-panel" data-theme="a">
+
+					<ul data-role="listview" data-theme="a" data-divider-theme="a" style="margin-top:-16px;" class="nav-search">
+						<li data-icon="delete" style="background-color:#111;">
+							<a href="#" data-rel="close">Cerrar menu</a>
+						</li>
+						<li data-filtertext="wai-aria voiceover accessibility screen reader">
+							<a href="mi_horario.html">Mi Horario</a>
+						</li>
+						<li data-filtertext="wai-aria voiceover accessibility screen reader">
+							<a href="cursos.html">Cursos</a>
+						</li>
+						<li data-filtertext="accordions collapsible set collapsible-set collapsed">
+							<a href="examenes.html">Exámenes</a>
+						</li>						
+					</ul>
+
+					<!-- panel content goes here -->
+				</div><!-- /panel -->
+
 
 		<script src="scripts/filtros.js">
 		</script>
 
 		<div data-role="footer">
-			<h4>USAC</h4>
+			<h4>FIUSAC</h4>
 		</div>
 		<!-- /footer -->
+		<div data-role="panel" data-position="left"
+			data-position-fixed="false" data-display="reveal" id="nav-panel"
+			data-theme="a">
 
+			<ul data-role="listview" data-theme="a" data-divider-theme="a"
+				style="margin-top: -16px;" class="nav-search">
+				<li data-icon="delete" style="background-color: #111;"><a
+					href="#" data-rel="close">Ocultar menú</a></li>
+				<li><a href="mi_horario.html">Mi horario</a></li>
+				<li><a href="cursos.html">Cursos</a></li>
+				<li><a href="examenes.html">Exámenes</a></li>
+			</ul>
+		</div>
+		<!-- /panel -->
 	</div>
 
 </body>

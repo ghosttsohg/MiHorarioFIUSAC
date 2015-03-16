@@ -8,7 +8,7 @@ $( document ).on( "pagecreate", "#pageone", function() {
         if ( value && value.length > 2 ) {
             $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
             //$ul.listview( "refresh" );
-		var url = "http://192.168.15.28:8080/HorarioUsac/servicios/horarios?id="+periodo;	
+		var url = "http://externo.icon.com.gt/HorarioUsac/servicios/horarios?id="+periodo;	
             $.ajax({
                 url: url,
                 dataType: "json",

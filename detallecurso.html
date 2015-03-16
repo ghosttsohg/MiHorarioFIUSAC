@@ -12,8 +12,9 @@
 	<div data-role="page" id="two" data-theme="a">
 
 		<div data-role="header">
-			<h1>Horario</h1>
-			<h3>Ingeniería</h3>
+			<a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+			<a href="index.html" data-icon="home" data-iconpos="notext">Inicio</a>
+			<h1>Mi Horario</h1>
 		</div><!-- /header -->
 
 		<div role="main" class="ui-content">
@@ -21,8 +22,23 @@
 		</div><!-- /content -->
 
 		<div data-role="footer">
-			<h4>USAC</h4>
+			<h4>FIUSAC</h4>
 		</div><!-- /footer -->
+		
+				<div data-role="panel" data-position="left"
+			data-position-fixed="false" data-display="reveal" id="nav-panel"
+			data-theme="a">
+
+			<ul data-role="listview" data-theme="a" data-divider-theme="a"
+				style="margin-top: -16px;" class="nav-search">
+				<li data-icon="delete" style="background-color: #111;"><a
+					href="#" data-rel="close">Ocultar menú</a></li>
+				<li><a href="mi_horario.html">Mi horario</a></li>
+				<li><a href="cursos.html">Cursos</a></li>
+				<li><a href="examenes.html">Exámenes</a></li>
+			</ul>
+		</div>
+		<!-- /panel -->
 	</div><!-- /page two -->
 
 </body>
