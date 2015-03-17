@@ -1,10 +1,11 @@
 $( document ).on( "pagecreate", "#pageone", function() {
+	 
     $( "#listacursos" ).on( "filterablebeforefilter", function ( e, data ) {
         var $ul = $( this ),
             $input = $( data.input ),
             value = $.trim($input.val()),
             html = "";
-        $ul.html( "" );
+        	$ul.html( "" );
         if ( value && value.length > 2 ) {
             $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
             //$ul.listview( "refresh" );
@@ -35,17 +36,8 @@ $( document ).on( "pagecreate", "#pageone", function() {
             });
         }
     });
-});			
-
-$(document).ready(function() {
-    $('div#pageone').on({
-	pageinit: function(event) {
-	    $('#listacursos').listview('option', 'filterCallback', defaultSearch);
-        }
-    });
 });
 
-function defaultSearch( text, searchValue ) {
-    console.log("Text: "+ text, ", SearchValue: "+ searchValue);
-    return text.toLowerCase().indexOf( searchValue ) === -1;
-}
+$.mobile.filterable.prototype.options.filterCallback = function( index, searchValue ) {
+//override para trim del filtro
+};
