@@ -19,8 +19,15 @@
 
 		<div role="main" class="ui-content">
 			<h2>Detalle Curso</h2>		
-		</div><!-- /content -->
+			<div id="categories"></div>
+			<button class="ui-btn" onclick="addTodo();">Agregar a mi Horario</button>
+			</div><!-- /content -->
 
+		<script src="scripts/detalleCurso.js">
+		</script>
+		<script src="scripts/bdMiHorario.js">
+		</script>
+		
 		<div data-role="footer">
 			<h4>FIUSAC</h4>
 		</div><!-- /footer -->
@@ -38,6 +45,15 @@
 				<li><a href="examenes.html">Exámenes</a></li>
 			</ul>
 		</div>
+		
+		
+		<script>
+			$(document).ready(function() {
+ 			var dirName = $.mobile.path.get( $( this ).attr( "p" ) );
+    
+			});
+			</script>
+		
 		<!-- /panel -->
 	</div><!-- /page two -->
 

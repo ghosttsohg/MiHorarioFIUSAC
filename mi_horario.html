@@ -19,11 +19,16 @@
 		</div><!-- /header -->
 
 	<div role="main" class="ui-content">
-		<h4>Mi horario</h4>
 		
+		<ul data-role="listview" data-inset="true" id="todoItems">
+		</ul>
 		
+		<button class="ui-btn" onclick="deleteAll();">Borrar Todo</button>	
 	</div><!-- /content -->
 
+	<script src="scripts/bdMiHorario.js">
+	</script>
+	
 	<div data-role="footer" data-theme="a">
 		<h1>FIUSAC</h1>
 	</div><!-- /footer -->
@@ -41,6 +46,7 @@
 				<li><a href="examenes.html">Exámenes</a></li>
 			</ul>
 		</div>
+		<script type="text/javascript">selectAll()</script>;
 		<!-- /panel -->
 </div><!-- /page one -->
 </body>
