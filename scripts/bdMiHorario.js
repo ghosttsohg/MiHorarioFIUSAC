@@ -19,10 +19,25 @@ app.addTodo = function(periodoId,codigo,curso, seccion, salon, hora, dias, cated
 	var db = app.db;
 	db.transaction(function(tx) {
 		var addedOn = new Date();
-		tx.executeSql("INSERT INTO bdMiHorario(periodoId, codigo, curso, seccion, salon, hora, dias, catedratico, added_on) VALUES (?,?,?,?,?,?,?,?,?)",
+		
+		
+			var lblMensaje = document.getElementById("lblMensaje");
+
+			tx.executeSql('SELECT COUNT(*) AS c FROM  bdMiHorario where periodoId = ' + periodoId + ' and codigo=' + codigo, [], function (tx, r) {
+				if(r.rows.item(0).c > 0){
+					lblMensaje.innerHTML = "El curso ya existe en Mi Horario";							
+					
+				}
+				else
+				{
+			
+					tx.executeSql("INSERT INTO bdMiHorario(periodoId, codigo, curso, seccion, salon, hora, dias, catedratico, added_on) VALUES (?,?,?,?,?,?,?,?,?)",
 					  [periodoId,codigo,curso, seccion, salon, hora, dias, catedratico, addedOn],
 					  app.onSuccess,
-					  app.onError);
+					  app.onError);			
+					  lblMensaje.innerHTML = "El curso se ha agregado a Mi Horario";							
+				}
+			});
 	});
 	
 }
@@ -88,15 +103,12 @@ app.refresh = function() {
 	});
 }
 
-
 function init() {
 	app.openDb();
 	app.createTable();
 }
 
-     
 function addTodo() {
-
 	init();
 	var codigo = $("#codigo").text();
 	var curso = $("#curso").text();
@@ -105,9 +117,10 @@ function addTodo() {
 	var hora = $("#hora").text();
 	var dias = $("#dias").text();
 	var catedratico = $("#catedratico").text();
-	app.addTodo(1,codigo, curso, seccion, salon, hora, dias, catedratico);
-	
+	var periodo = $("#periodo").text();
+	app.addTodo(periodo,codigo, curso, seccion, salon, hora, dias, catedratico);
 }
+
 
 function selectAll(){
 	app.openDb();
@@ -122,4 +135,16 @@ function deleteAll(){
 	app.refresh();
 }
 
+
+function exists(periodoId,codigo){
+	var db = app.db;
+    var x;
+    db.readTransaction(function (tx) {
+        tx.executeSql('SELECT COUNT(*) AS c FROM  bdMiHorario where periodoId = ' + periodoId + ' and codigo=' + codigo, [], function (tx, r) {
+            alert(r.rows.item(0).c);
+			return r.rows.item(0).c;
+        });
+    });
+    
+}
 

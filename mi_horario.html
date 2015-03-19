@@ -16,14 +16,25 @@
 			<a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
 			<a href="index.html" data-icon="home" data-iconpos="notext">Inicio</a>
 			<h1>Mi Horario</h1>
-		</div><!-- /header -->
+	</div><!-- /header -->
 
 	<div role="main" class="ui-content">
-		
 		<ul data-role="listview" data-inset="true" id="todoItems">
 		</ul>
 		
-		<button class="ui-btn" onclick="deleteAll();">Borrar Todo</button>	
+		<a href="#popupCloseRight" data-rel="popup" class="ui-btn"  data-position-to="window">Borrar Todo</a>
+		<div data-role="popup" id="popupCloseRight" class="ui-content">
+				<p>Esta seguro que desea borrar todos los cursos?</p>
+				<center><a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">
+					Cancelar
+				</a>
+				<a href="#" class="ui-corner-all" data-role="button" data-inline="true" data-transition="flow" data-theme="b" data-rel="back" onclick="deleteAll();">
+					OK
+				</a></center>
+		</div>
+		
+		
+		
 	</div><!-- /content -->
 
 	<script src="scripts/bdMiHorario.js">
