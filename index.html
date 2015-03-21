@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -7,20 +6,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Horarios Ingeniería</title>
 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-<!-- 	<link rel="stylesheet" href="css/jqm-demos.css"> -->
-<link rel="shortcut icon" href="../favicon.ico">
 <script src="scripts/jquery-1.11.2.min.js"></script>
-<!-- 	<script src="scripts/indedx.js"></script> -->
 <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
 </head>
 
-<body>
+<body onload="onLoad()">
+
 
 	<!-- Start of first page: #one -->
 	<div data-role="page" id="one" class="ui-responsive-panel">
 
 		<div data-role="header">
 			<a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+			<a href="salir.html" data-icon="back" data-iconpos="notext">Salir</a>
 			<h1>Mi Horario</h1>
 		</div>
 		<div role="main" class="ui-content">
@@ -53,12 +51,46 @@
 					href="#" data-rel="close">Ocultar menú</a></li>
 				<li><a href="mi_horario.html">Mi horario</a></li>
 				<li><a href="cursos.html">Cursos</a></li>
-				<li><a href="examenes.html">Exámenes</a></li>
-			</ul>
+				<li><a href="examenes.html">Exámenes</a></li>				
+				<li><a href="salir.html">Salir</a></li>
+			</ul>			
 		</div>
 		<!-- /panel -->
+		 <script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
+<script type="text/javascript">
 
+var lastBackBtnTap = 0;
+// Wait for device API libraries to load
+//
+function onLoad() {
+    document.addEventListener("deviceready", onDeviceReady, false);
+}
+
+// device APIs are available
+//
+function onDeviceReady() {
+    // Register the event listener
+    document.addEventListener("backbutton", onBackKeyDown, false);
+}
+
+// Handle the back button
+//
+function onBackKeyDown() {
+	var now = (new Date()).getTime();
+	if((now-lastBackBtnTap) < 1000){
+        navigator.app.exitApp();
+    }
+    else{
+        lastBackBtnTap = now;
+//         window.plugins.toast.showLongBottom('Presiona dos veces para salir...');
+        navigator.app.backHistory();
+    }
+	
+}
+
+
+</script>
 	</div>
 	<!-- /page one -->
-</body>
+	</body>
 </html>
