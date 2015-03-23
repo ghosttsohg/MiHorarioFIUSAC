@@ -11,6 +11,7 @@ $(document).on("pageshow", function(event, data) {
 	var ic = getURLParameter("ic"); 
 	
 	var url = "http://externo.icon.com.gt/HorarioUsac/servicios/horarios/detalleHorario?p=" + p + "&ic=" + ic;
+//	var url = "http://localhost:8080/HorarioUsac/servicios/horarios/detalleHorario?p=" + p + "&ic=" + ic;
 	$.getJSON(url, function(data) {
     //data is the JSON string
 		var service_table = $('<table data-role="table"  data-mode="reflow" class="ui-responsive table-stroke" id="service"></table>');

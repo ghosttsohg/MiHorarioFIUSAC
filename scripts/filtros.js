@@ -49,8 +49,9 @@ $( document ).on( "pagecreate", "#pageone", function() {
         	$ul.html( "" );
         if ( value && value.length > 3 ) { //Ignoramos preposiciones y articulos, longitud minima de palabra en curso 4chars
             $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-            //$ul.ligrastview( "refresh" );
+            //$ul.listview( "refresh" );
 		var url = "http://externo.icon.com.gt/HorarioUsac/servicios/horarios?id="+periodo;	
+//		var url = "http://localhost:8080/HorarioUsac/servicios/horarios?id="+periodo;
             $.ajax({
                 url: url,
                 dataType: "json",
@@ -64,8 +65,9 @@ $( document ).on( "pagecreate", "#pageone", function() {
 		var list = "";
 		var nombreCurso = "";
 		var tipo = "Clase Magistral";
-		var seccion = "-";
 		for (var i = 0, l = result.length; i < l; i++) {
+			var detalle = "";
+			var complemento = "";
 			console.debug("Tipo: "+result[i]["tipo"]);
 			//[1: Clase Magistral ][2: Laboratorio ][3: Trabajo Dirigido ][4: Dibujo ][5: Práctica ]
 			if(result[i]["tipo"]===2){
@@ -78,11 +80,20 @@ $( document ).on( "pagecreate", "#pageone", function() {
 				tipo = "Práctica"
 			}
 			
-			seccion = result[i]["seccion"];
+			if($.inArray(periodo,[14,15,3,4,7,8]) ){
+				detalle += "Jornada: "+result[i]["detalle"];
+				tipo = "";
+			}
+			else{
+				detalle += "Sección: "+result[i]["detalle"];
+				tipo = " - " + tipo;
+			}
 			
-			nombreCurso = "<a href=\"detallecurso.html?p=1&ic="+result[i]["idCurso"]+"\">"
+			complemento = "<p>"+tipo+detalle+"</p></a>";
+			
+			nombreCurso = "<a href=\"detallecurso.html?p="+periodo+"&ic="+result[i]["idCurso"]+"\">"
 					+ result[i]["nombreCurso"]
-					+ "<p>"+tipo+" - Sección: "+seccion+"</p></a>";
+					+ complemento;
 			$('<li />', {
 				html : nombreCurso
 			}).appendTo('ul.listaCursos')
