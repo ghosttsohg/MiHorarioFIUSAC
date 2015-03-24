@@ -80,15 +80,19 @@ $( document ).on( "pagecreate", "#pageone", function() {
 				tipo = "Práctica"
 			}
 			
-			if($.inArray(periodo,[14,15,3,4,7,8]) >= 0){
+			console.debug("Periodo: "+periodo);
+			console.debug($.inArray(periodo,[14,15,3,4,7,8]));
+			
+			
+			if($.inArray(periodo,['14','15','3','4','7','8']) >= 0){
 				detalle += "Jornada: "+result[i]["detalle"];
 				tipo = "";
 			}
 			else{
-				detalle += "Sección: "+result[i]["detalle"];
+				detalle = " - " + "Sección: "+result[i]["detalle"];
 			}
 			
-			complemento = "<p>"+tipo+" - "+detalle+"</p></a>";
+			complemento = "<p>"+tipo+detalle+"</p></a>";
 			
 			nombreCurso = "<a href=\"detallecurso.html?p="+periodo+"&ic="+result[i]["idCurso"]+"\">"
 					+ result[i]["nombreCurso"]
