@@ -11,7 +11,7 @@ app.openDb = function() {
 app.createTable = function() {
 	var db = app.db;
 	db.transaction(function(tx) {
-		tx.executeSql("CREATE TABLE IF NOT EXISTS bdMiHorario(ID INTEGER PRIMARY KEY ASC, periodoId  INTEGER, codigo INTEGER, curso TEXT, seccion TEXT, salon TEXT, hora TEXT, dias TEXT, catedratico TEXT, added_on DATETIME)", []);
+		tx.executeSql("CREATE TABLE IF NOT EXISTS bdMiHorario2(ID INTEGER PRIMARY KEY ASC, periodoId  INTEGER, codigo TEXT, curso TEXT, seccion TEXT, salon TEXT, hora TEXT, dias TEXT, catedratico TEXT, added_on DATETIME)", []);
 	});
 }
       
@@ -23,7 +23,7 @@ app.addTodo = function(periodoId,codigo,curso, seccion, salon, hora, dias, cated
 		
 			var lblMensaje = document.getElementById("lblMensaje");
 
-			tx.executeSql('SELECT COUNT(*) AS c FROM  bdMiHorario where periodoId = ' + periodoId + ' and codigo=' + codigo, [], function (tx, r) {
+			tx.executeSql('SELECT COUNT(*) AS c FROM  bdMiHorario2 where periodoId = ' + periodoId + ' and codigo="' + codigo  + '"', [], function (tx, r) {
 				if(r.rows.item(0).c > 0){
 					lblMensaje.innerHTML = "El curso ya existe en Mi Horario";							
 					
@@ -31,7 +31,7 @@ app.addTodo = function(periodoId,codigo,curso, seccion, salon, hora, dias, cated
 				else
 				{
 			
-					tx.executeSql("INSERT INTO bdMiHorario(periodoId, codigo, curso, seccion, salon, hora, dias, catedratico, added_on) VALUES (?,?,?,?,?,?,?,?,?)",
+					tx.executeSql("INSERT INTO bdMiHorario2(periodoId, codigo, curso, seccion, salon, hora, dias, catedratico, added_on) VALUES (?,?,?,?,?,?,?,?,?)",
 					  [periodoId,codigo,curso, seccion, salon, hora, dias, catedratico, addedOn],
 					  app.onSuccess,
 					  app.onError);			
@@ -57,7 +57,7 @@ app.onSuccessRefresh = function(tx, r) {
 app.deleteTodo = function(id) {
 	var db = app.db;
 	db.transaction(function(tx) {
-		tx.executeSql("DELETE FROM bdMiHorario WHERE ID=?", [id],
+		tx.executeSql("DELETE FROM bdMiHorario2 WHERE ID=?", [id],
 					  app.onSuccessRefresh(),
 					  app.onError);
 	});
@@ -66,7 +66,7 @@ app.deleteTodo = function(id) {
 app.deleteTodoAll = function() {
 	var db = app.db;
 	db.transaction(function(tx) {
-		tx.executeSql("DELETE FROM bdMiHorario ", [],
+		tx.executeSql("DELETE FROM bdMiHorario2 ", [],
 					  app.onSuccess,
 					  app.onError);
 	});
@@ -74,30 +74,75 @@ app.deleteTodoAll = function() {
 
 app.refresh = function() {
 	var renderTodo = function (row) {
-		return "<li data-icon='delete' class='ui-first-child ui-last-child'><a href='javascript:void(0);'  onclick='app.deleteTodo(" + row.ID + ");' class='ui-btn ui-btn-icon-right ui-icon-delete'>"
-		+"<h2>" + row.codigo + " " + row.curso + "</h2>"
-		+"<p>Secci&oacuten: " + row.seccion + "</p>"
-		+"<p>Salon: " + row.salon + "</p>"
-		+"<p>Hora: " + row.hora + "</p>"
-		+"<p>D&iacutea: " + row.dias + "</p>"
-		+"<p>Catedratico: " + row.catedratico + "</p>"
-		+"</a></li>"
+		
+		var periodoName ="";
+		if (row.periodoId==1)
+			periodoName = "Cursos Primer Semestre";
+		else if (row.periodoId==2)
+			periodoName = "Cursos Segundo Semestre";
+		else if (row.periodoId==14)
+			periodoName = "Exámenes Finales Primer Semestre";
+		else if (row.periodoId==15)
+			periodoName = "Exámenes Finales Segundo Semestre";
+		else if (row.periodoId==3)
+			periodoName = "Primera Retrasada Primer Semestre";
+		else if (row.periodoId==4)
+			periodoName = "Primera Regtrasada Segundo Semestre";
+		else if (row.periodoId==7)
+			periodoName = "Segunda Retrasada Segundo Semestre";
+		else if (row.periodoId==8)
+			periodoName = "Segunda Retrasada Segundo Semestre";
+		else if (row.periodoId==2)
+			periodoName = "Segundo Semestre";
+		
+		
+		if (row.periodoId == 14 || row.periodoId ==3 || row.periodoId ==7 || row.periodoId ==15 || row.periodoId ==4 || row.periodoId ==8){
+			return "<li periodo='"+periodoName+"' data-icon='delete' class='ui-first-child ui-last-child'><a href='javascript:void(0);'  onclick='app.deleteTodo(" + row.ID + ");' class='ui-btn ui-btn-icon-right ui-icon-delete'>"
+			+"<h2>" + row.codigo + " " + row.curso + "</h2>"
+			+"<p>Jornada: " + row.seccion + "</p>"
+			+"<p>Salon: " + row.salon + "</p>"
+			+"<p>Hora: " + row.hora + "</p>"
+			+"<p>D&iacutea: " + row.dias + "</p>"
+			+"</a></li>"
+		}
+		else{
+			return "<li periodo='"+periodoName+"' data-icon='delete' class='ui-first-child ui-last-child'><a href='javascript:void(0);'  onclick='app.deleteTodo(" + row.ID + ");' class='ui-btn ui-btn-icon-right ui-icon-delete'>"
+			+"<h2>" + row.codigo + " " + row.curso + "</h2>"
+			+"<p>Secci&oacuten: " + row.seccion + "</p>"
+			+"<p>Salon: " + row.salon + "</p>"
+			+"<p>Hora: " + row.hora + "</p>"
+			+"<p>D&iacutea: " + row.dias + "</p>"
+			+"<p>Catedratico: " + row.catedratico + "</p>"
+			+"</a></li>"
+			
+		}
+			
 	}
     
 	var render = function (tx, rs) {
 		var rowOutput = "";
 		var todoItems = document.getElementById("todoItems");
+		
 		for (var i = 0; i < rs.rows.length; i++) {
 			rowOutput += renderTodo(rs.rows.item(i));
 		}
       
+		
 		todoItems.innerHTML = rowOutput;
+		
+		$("#todoItems").listview({
+            autodividers: true,
+            autodividersSelector: function (li) {
+                var out = li.attr('periodo');
+                return out;
+            }
+        }).listview('refresh');
 		
 	}
     
 	var db = app.db;
 	db.transaction(function(tx) {
-		tx.executeSql("SELECT * FROM bdMiHorario", [], 
+		tx.executeSql("SELECT * FROM bdMiHorario2", [], 
 					  render, 
 					  app.onError);
 	});
@@ -140,8 +185,7 @@ function exists(periodoId,codigo){
 	var db = app.db;
     var x;
     db.readTransaction(function (tx) {
-        tx.executeSql('SELECT COUNT(*) AS c FROM  bdMiHorario where periodoId = ' + periodoId + ' and codigo=' + codigo, [], function (tx, r) {
-            alert(r.rows.item(0).c);
+        tx.executeSql('SELECT COUNT(*) AS c FROM  bdMiHorario2 where periodoId = ' + periodoId + ' and codigo="' + codigo + '"', [], function (tx, r) {
 			return r.rows.item(0).c;
         });
     });
