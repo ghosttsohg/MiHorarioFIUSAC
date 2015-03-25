@@ -97,15 +97,16 @@ app.refresh = function() {
 		
 		
 		if (row.periodoId == 14 || row.periodoId ==3 || row.periodoId ==7 || row.periodoId ==15 || row.periodoId ==4 || row.periodoId ==8){
-			return "<li periodo='"+periodoName+"' data-icon='delete' class='ui-first-child ui-last-child'><a href='javascript:void(0);'  onclick='app.deleteTodo(" + row.ID + ");' class='ui-btn ui-btn-icon-right ui-icon-delete'>"
+			return "<li periodo='"+periodoName+"' data-icon='delete' class='ui-first-child ui-last-child'><a href='#' class='ui-icon-delete'>"
 			+"<h2>" + row.codigo + " " + row.curso + "</h2>"
 			+"<p>Jornada: " + row.seccion + "</p>"
 			+"<p>Salon: " + row.salon + "</p>"
 			+"<p>Hora: " + row.hora + "</p>"
 			+"<p>D&iacutea: " + row.dias + "</p>"
-			+"</a></li>"
+			+"</a><a href='javascript:void(0);'  onclick='app.deleteTodo(" + row.ID + ");' class='ui-btn ui-btn-icon-right ui-icon-delete'>Delete</a></li>"
 		}
 		else{
+			/*
 			return "<li periodo='"+periodoName+"' data-icon='delete' class='ui-first-child ui-last-child'><a href='javascript:void(0);'  onclick='app.deleteTodo(" + row.ID + ");' class='ui-btn ui-btn-icon-right ui-icon-delete'>"
 			+"<h2>" + row.codigo + " " + row.curso + "</h2>"
 			+"<p>Secci&oacuten: " + row.seccion + "</p>"
@@ -114,6 +115,16 @@ app.refresh = function() {
 			+"<p>D&iacutea: " + row.dias + "</p>"
 			+"<p>Catedratico: " + row.catedratico + "</p>"
 			+"</a></li>"
+			*/
+			
+			return "<li periodo='"+periodoName+"' data-icon='delete' class='ui-first-child ui-last-child'><a href='#' class='ui-icon-delete'>"
+			+"<h2>" + row.codigo + " " + row.curso + "</h2>"
+			+"<p>Secci&oacuten: " + row.seccion + "</p>"
+			+"<p>Salon: " + row.salon + "</p>"
+			+"<p>Hora: " + row.hora + "</p>"
+			+"<p>D&iacutea: " + row.dias + "</p>"
+			+"<p>Catedratico: " + row.catedratico + "</p>"
+			+"</a><a href='javascript:void(0);'  onclick='app.deleteTodo(" + row.ID + ");' class='ui-btn ui-btn-icon-right ui-icon-delete'>Delete</a></li>"
 			
 		}
 			

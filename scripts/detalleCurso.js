@@ -1,20 +1,22 @@
-var p;
+var p=0;
+var ic=0;
 function getURLParameter(name) {
     return decodeURI(
         (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
     );
 }
 
-$(document).on("pageshow", function(event, data) {
-	
-	p = getURLParameter("p"); 
-	var ic = getURLParameter("ic"); 
+
+$(document).one('pagebeforeshow', "#twoDetalle", function (event, data) {
+		p = getURLParameter("p"); 
+		ic = getURLParameter("ic"); 
+});	
+
+
+$( document ).one( "pageshow", "#twoDetalle", function() {
 	
 	var url = "http://externo.icon.com.gt/HorarioUsac/servicios/horarios/detalleHorario?p=" + p + "&ic=" + ic;
-//	var url = "http://localhost:8080/HorarioUsac/servicios/horarios/detalleHorario?p=" + p + "&ic=" + ic;
 	$.getJSON(url, function(data) {
-    //data is the JSON string
-		
 		if (p == 14 || p==3 || p==7 || p==15 || p==4 || p==8){
 			var service_table = $('<table data-role="table"  data-mode="reflow" class="ui-responsive table-stroke" id="service"></table>');
 			var service_tr_th = $("<thead><tr><th>C&oacutedigo</th><th>Curso</th><th>Jornada</th><th>Salon</th><th>Hora</th><th>D&iacutea</th><th>Catedr&aacutetico</th><th>periodo</th></tr></thead>");
@@ -70,12 +72,14 @@ $(document).on("pageshow", function(event, data) {
 		service_tr.appendTo(service_tbody);
 		service_tbody.appendTo(service_table);
 		service_table.appendTo($("#categories"));
-
 		service_table.table();
+		return false;
 		
 	});
 	
 });
+
+
 
 function trim(stringToTrim) {
 	return stringToTrim.replace(/^\s+|\s+$/g,"");
