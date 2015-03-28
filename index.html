@@ -70,7 +70,8 @@ function onLoad() {
 //
 function onDeviceReady() {
     // Register the event listener
-    document.addEventListener("backbutton", onBackKeyDown, false);
+    document.addEventListener("backbutton", onBackKeyDown, false);    
+    document.addEventListener("menubutton", onMenuKeyDown, false);
 }
 
 // Handle the back button
@@ -85,6 +86,10 @@ function onBackKeyDown() {
         navigator.app.backHistory();
     }
 	
+}
+
+function onMenuKeyDown() {
+	$( "#nav-panel" ).panel( "toggle" );
 }
 
 
