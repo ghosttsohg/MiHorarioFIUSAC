@@ -33,7 +33,6 @@
 				<a href="examenes.html" class="ui-btn ui-shadow ui-corner-all">Exámenes
 					y Retrasadas</a>
 			</p>
-
 		</div>
 		<!-- /content -->
 
@@ -56,7 +55,7 @@
 			</ul>			
 		</div>
 		<!-- /panel -->
-		 <script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript">
 
 var lastBackBtnTap = 0;
@@ -82,6 +81,7 @@ function onBackKeyDown() {
     }
     else{
         lastBackBtnTap = now;
+        window.plugins.toast.showShortBottom('Presiona dos veces para salir.');
         navigator.app.backHistory();
     }
 	

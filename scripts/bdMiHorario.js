@@ -72,6 +72,48 @@ app.deleteTodoAll = function() {
 	});
 }
 
+app.addToCalendar = function(idPeriodo,dia,curso,jornada,salon,hora) {
+//	alert('Agregar: '+' '+idPeriodo+' '+dia+' '+curso+' '+jornada+' '+salon+' '+hora);
+	
+	var hoy = new Date();
+	
+	var anio = hoy.getFullYear();
+	var mes = 11;
+	
+	if (idPeriodo == 14)
+		mes = 4;
+	else if (idPeriodo == 15)
+		mes = 10;
+	else if (idPeriodo == 3)
+		mes = 5;
+	else if (idPeriodo == 4)
+		mes = 11;
+	else if (idPeriodo == 7)
+		mes = 6;
+	else if(idPeriodo == 8)
+		mes = 0;
+	
+	var arrayDia = dia.split(" ");
+	var arrayHora = hora.split(":");
+	
+	// prep some variables
+	  var startDate = new Date(anio,mes,arrayDia[1],arrayHora[0],arrayHora[1],0,0,0); // beware: month 0 = january, 11 = december
+	  var endDate = new Date(anio,mes,arrayDia[1],arrayHora[0],arrayHora[1],0,0,0);
+	  var title = "Exámen: "+curso;
+	  var eventLocation = salon;
+	  var notes = "Jornada: "+jornada;
+	  var success = function(message) {  console.debug("Evento agregado con éxito: " + JSON.stringify(message)); };
+	  var error = function(message) {  console.debug("Error: " + message); };
+
+//	  alert("Fecha: "+startDate);
+	  // create an event interactively
+	  window.plugins.calendar.createEventInteractively(title,eventLocation,notes,startDate,endDate,success,error);
+
+	
+}
+
+
+
 app.refresh = function() {
 	var renderTodo = function (row) {
 		
@@ -87,9 +129,9 @@ app.refresh = function() {
 		else if (row.periodoId==3)
 			periodoName = "Primera Retrasada Primer Semestre";
 		else if (row.periodoId==4)
-			periodoName = "Primera Regtrasada Segundo Semestre";
+			periodoName = "Primera Retrasada Segundo Semestre";
 		else if (row.periodoId==7)
-			periodoName = "Segunda Retrasada Segundo Semestre";
+			periodoName = "Segunda Retrasada Primer Semestre";
 		else if (row.periodoId==8)
 			periodoName = "Segunda Retrasada Segundo Semestre";
 		else if (row.periodoId==2)
@@ -102,7 +144,8 @@ app.refresh = function() {
 			+"<p>Jornada: " + row.seccion + "</p>"
 			+"<p>Salon: " + row.salon + "</p>"
 			+"<p>Hora: " + row.hora + "</p>"
-			+"<p>D&iacutea: " + row.dias + "</p>"
+			+"<p>D&iacutea: " + row.dias + "</p>" //idPeriodo,dia,curso,jornada,salon,hora  
+			+"<button onclick='app.addToCalendar(" + row.periodoId +",\""+row.dias+"\",\""+row.curso+"\",\""+row.seccion+"\",\""+row.salon+"\",\""+row.hora+"\");' class=\"ui-btn ui-btn-icon-left ui-icon-calendar\">Agregar a calendario</button>"
 			+"</a><a href='javascript:void(0);'  onclick='app.deleteTodo(" + row.ID + ");' class='ui-btn ui-btn-icon-right ui-icon-delete'>Delete</a></li>"
 		}
 		else{
