@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
 <title>Horarios Ingeniería</title>
 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 <script src="scripts/jquery-1.11.2.min.js"></script>
@@ -16,21 +16,21 @@
 	<!-- Start of first page: #one -->
 	<div data-role="page" id="one" class="ui-responsive-panel">
 
-		<div data-role="header">
+		<div data-role="header" data-position="fixed">
 			<a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
 			<a href="salir.html" data-icon="back" data-iconpos="notext">Salir</a>
 			<h1>Mi Horario</h1>
 		</div>
 		<div role="main" class="ui-content">
 			<p>
-				<a href="mi_horario.html" class="ui-btn ui-shadow ui-corner-all">Mi horario</a>
+				<a href="mi_horario.html" class="ui-btn ui-corner-all">Mi horario</a>
 			</p>
 			<h4>Consultar horario</h4>
 			<p>
-				<a href="cursos.html" class="ui-btn ui-shadow ui-corner-all">Cursos</a>
+				<a href="cursos.html" class="ui-btn ui-corner-all">Cursos</a>
 			</p>
 			<p>
-				<a href="examenes.html" class="ui-btn ui-shadow ui-corner-all">Exámenes
+				<a href="examenes.html" class="ui-btn ui-corner-all">Exámenes
 					y Retrasadas</a>
 			</p>
 		</div>
@@ -70,6 +70,7 @@ function onLoad() {
 function onDeviceReady() {
     // Register the event listener
     document.addEventListener("backbutton", onBackKeyDown, false);    
+    $.mobile.defaultPageTransition = "none";
 }
 
 // Handle the back button

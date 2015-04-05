@@ -5,6 +5,7 @@ function getURLParameter(name) {
 }
 
 var periodo = 0;
+var bandera_scroll = false;
 
 $(document).on('pagebeforeshow', "#pageone", function (event, data) {
 	periodo = getURLParameter("periodo")
@@ -100,10 +101,18 @@ $( document ).on( "pagecreate", "#pageone", function() {
 			$('<li />', {
 				html : nombreCurso
 			}).appendTo('ul.listaCursos')
+
+			bandera_scroll = true;
 		}
 
-		$('ul').listview('refresh');                
-		$ul.trigger( "updatelayout");
+		if(!bandera_scroll){
+			window.plugins.toast.showLongCenter('No hay horarios publicados que coincidan con tu busqueda.');
+		}else{
+			$('ul').listview('refresh');                
+			$ul.trigger( "updatelayout");
+		}
+
+
             });
         }
     });
@@ -113,18 +122,10 @@ $.mobile.filterable.prototype.options.filterCallback = function( index, searchVa
 //override para trim del filtro
 };
 
-
-
-
-//document.addEventListener("backbutton", function(){
-//	alert("Boton atras");
-//    var now = (new Date()).getTime();
-//    if((now-controller.util.lastBackBtnTap) < 1000){
-//        navigator.app.exitApp();
-//    }
-//    else{
-//        controller.util.lastBackBtnTap = now;
-//        controller.util.showToast(controller.util.getString('doubleTapToExit'));
-//    }
-//
-//}, false);
+$(document).on("scrollstart",function(){
+	if(bandera_scroll){
+		console.debug('Hide keyboard');
+		document.activeElement.blur();
+		bandera_scroll = false;
+	}
+});
