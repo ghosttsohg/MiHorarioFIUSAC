@@ -73,10 +73,8 @@ app.deleteTodoAll = function() {
 }
 
 app.addToCalendar = function(idPeriodo,dia,curso,jornada,salon,hora) {
-//	alert('Agregar: '+' '+idPeriodo+' '+dia+' '+curso+' '+jornada+' '+salon+' '+hora);
 	
-	var hoy = new Date();
-	
+	var hoy = new Date();	
 	var anio = hoy.getFullYear();
 	var mes = 11;
 	
@@ -96,21 +94,18 @@ app.addToCalendar = function(idPeriodo,dia,curso,jornada,salon,hora) {
 	var arrayDia = dia.split(" ");
 	var arrayHora = hora.split(":");
 	
-	// prep some variables
-	  var startDate = new Date(anio,mes,arrayDia[1],arrayHora[0],arrayHora[1],0,0,0); // beware: month 0 = january, 11 = december
-	  var endDate = new Date(anio,mes,arrayDia[1],arrayHora[0],arrayHora[1],0,0,0);
+	  var startDate = new Date(anio,mes,arrayDia[1],arrayHora[0],arrayHora[1],0,0,0); 
+	  var endDate = new Date(anio,mes,arrayDia[1],arrayHora[0],arrayHora[1]+1,0,0,0);
 	  var title = "Exámen: "+curso;
 	  var eventLocation = salon;
 	  var notes = "Jornada: "+jornada;
 	  var success = function(message) {  console.debug("Evento agregado con éxito: " + JSON.stringify(message)); };
 	  var error = function(message) {  console.debug("Error: " + message); };
 
-//	  alert("Fecha: "+startDate);
-	  // create an event interactively
 	  window.plugins.calendar.createEventInteractively(title,eventLocation,notes,startDate,endDate,success,error);
 
-	
 }
+
 
 
 
