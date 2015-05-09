@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 <script src="scripts/jquery-1.11.2.min.js"></script>
@@ -10,30 +11,51 @@
 <body>
 
 	<!-- Start of first page: #one -->
-<div data-role="page" id="one">
+	<div data-role="page" id="one">
 
-	<div data-role="header" data-position="fixed">
+		<div data-role="header" data-position="fixed">
 			<a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
 			<a href="index.html" data-icon="home" data-iconpos="notext">Inicio</a>
 			<h1>Mi Horario</h1>
-		</div><!-- /header -->
+		</div>
+		<!-- /header -->
 
-	<div role="main" class="ui-content">
-		<h4>Primer Semestre</h4>
-		<p><a href="listaCursos.html?periodo=14" class="ui-btn ui-shadow ui-corner-all">Exámenes</a></p>
-		<p><a href="listaCursos.html?periodo=3" class="ui-btn ui-shadow ui-corner-all">Primera Retrasada</a></p>
-		<p><a href="listaCursos.html?periodo=7" class="ui-btn ui-shadow ui-corner-all">Segunda Retrasada</a></p>
-		<h4>Segundo Semestre</h4>
-		<p><a href="listaCursos.html?periodo=15" class="ui-btn ui-shadow ui-corner-all">Exámenes</a></p>
-		<p><a href="listaCursos.html?periodo=4" class="ui-btn ui-shadow ui-corner-all">Primera Retrasada</a></p>
-		<p><a href="listaCursos.html?periodo=8" class="ui-btn ui-shadow ui-corner-all">Segunda Retrasada</a></p>
-		
-	</div><!-- /content -->
+		<div role="main" class="ui-content">
+			<h4  class = "consultas">Primer Semestre</h4>
+			<p class = "consultas">
+				<a href="listaCursos.html?periodo=14"
+					class="ui-btn ui-shadow ui-corner-all">Exámenes</a>
+			</p>
+			<p class = "consultas">
+				<a href="listaCursos.html?periodo=3"
+					class="ui-btn ui-shadow ui-corner-all">Primera Retrasada</a>
+			</p>
+			<p class = "consultas">
+				<a href="listaCursos.html?periodo=7"
+					class="ui-btn ui-shadow ui-corner-all">Segunda Retrasada</a>
+			</p>
+			<h4 class = "consultas">Segundo Semestre</h4>
+			<p class = "consultas">
+				<a href="listaCursos.html?periodo=15"
+					class="ui-btn ui-shadow ui-corner-all">Exámenes</a>
+			</p>
+			<p class = "consultas">
+				<a href="listaCursos.html?periodo=4"
+					class="ui-btn ui-shadow ui-corner-all">Primera Retrasada</a>
+			</p>
+			<p class = "consultas">
+				<a href="listaCursos.html?periodo=8"
+					class="ui-btn ui-shadow ui-corner-all">Segunda Retrasada</a>
+			</p>
 
-	<div data-role="footer" data-theme="a">
-		<h1>FIUSAC</h1>
-	</div><!-- /footer -->
-	
+		</div>
+		<!-- /content -->
+
+		<div data-role="footer" data-theme="a">
+			<h1>FIUSAC</h1>
+		</div>
+		<!-- /footer -->
+
 		<div data-role="panel" data-position="left"
 			data-position-fixed="false" data-display="reveal" id="nav-panel"
 			data-theme="a">
@@ -49,8 +71,9 @@
 			</ul>
 		</div>
 		<!-- /panel -->
-	
-</div><!-- /page one -->
+<script type="text/javascript" charset="utf-8" src="scripts/conexion.js"></script>
+	</div>
+	<!-- /page one -->
 </body>
 </html>
 

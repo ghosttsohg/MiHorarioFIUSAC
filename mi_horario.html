@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 <script src="scripts/jquery-1.11.2.min.js"></script>
@@ -10,44 +11,36 @@
 <body>
 
 	<!-- Start of first page: #one -->
-<div data-role="page" id="one">
+	<div data-role="page" id="one">
 
-	<div data-role="header" data-position="fixed">
+		<div data-role="header" data-position="fixed">
 			<a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
 			<a href="index.html" data-icon="home" data-iconpos="notext">Inicio</a>
 			<h1>Mi Horario</h1>
-	</div><!-- /header -->
-
-	<div role="main" class="ui-content">
-		<ul data-role="listview" data-inset="true" id="todoItems">
-		</ul>
-		
-		<a href="#popupCloseRight" data-rel="popup" class="ui-btn"  data-position-to="window">Borrar Todo</a>
-		<div data-role="popup" id="popupCloseRight" >
-				<p>Esta seguro que desea borrar todos los cursos?</p>
-				<center><a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">
-					Cancelar
-				</a>
-				<a href="#" class="ui-corner-all" data-role="button" data-inline="true" data-transition="flow" data-theme="b" data-rel="back" onclick="deleteAll();">
-					OK
-				</a></center>
 		</div>
-		
-		
-		
-		
-	</div><!-- /content -->
-	
-	
-	<script src="scripts/bdMiHorario.js">
-	</script>
+		<!-- /header -->
 
-	
-	<div data-role="footer" data-theme="a">
-		<h1>FIUSAC</h1>
-	</div><!-- /footer -->
-	
-			<div data-role="panel" data-position="left"
+		<div role="main" class="ui-content">
+			<ul data-role="listview" data-inset="true" id="todoItems">
+			</ul>
+
+			<a  data-rel="popup" class="ui-btn"
+				data-position-to="window" href="#" onclick='showConfirmAll(); return false;'>Borrar Todo</a>
+		</div>
+		<!-- /content -->
+
+
+		<script src="scripts/bdMiHorario.js">
+			
+		</script>
+
+
+		<div data-role="footer" data-theme="a">
+			<h1>FIUSAC</h1>
+		</div>
+		<!-- /footer -->
+
+		<div data-role="panel" data-position="left"
 			data-position-fixed="false" data-display="reveal" id="nav-panel"
 			data-theme="a">
 
@@ -61,9 +54,12 @@
 				<li><a href="salir.html">Salir</a></li>
 			</ul>
 		</div>
-		<script type="text/javascript">selectAll()</script>;
+		<script type="text/javascript">
+			selectAll()
+		</script>
 		<!-- /panel -->
-</div><!-- /page one -->
+	</div>
+	<!-- /page one -->
 </body>
 </html>
 

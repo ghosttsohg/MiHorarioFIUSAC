@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 <script src="scripts/jquery-1.11.2.min.js"></script>
@@ -9,20 +10,22 @@
 </head>
 <body>
 
-	<div data-role="page" id="twoDetalle" >
+	<div data-role="page" id="twoDetalle">
 
 		<div data-role="header" data-position="fixed">
 			<a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
 			<a href="index.html" data-icon="home" data-iconpos="notext">Inicio</a>
 			<h1>Mi Horario</h1>
-		</div><!-- /header -->
+		</div>
+		<!-- /header -->
 
 		<div role="main" class="ui-content">
-		
-			<h2>Detalle Curso</h2>		
+
+			<h2 class="titulo">Detalle Curso</h2>
 			<div id="categories"></div>
-			
-			<a href="#popupCloseRight" data-rel="popup" class="ui-btn"  data-position-to="window"  onclick="addTodo()">Agregar a Mi Horario</a>
+			<!--			
+			<a href="#popupCloseRight" class="ui-btn"  data-position-to="window"  onclick="addTodo()">Agregar a Mi Horario</a>
+
 			<div data-role="popup" id="popupCloseRight" class="ui-content" data-dismissible="false" >
 				<center>
 				<p><label id="lblMensaje">El curso se ha agregado a Mi Horario</label></p>
@@ -30,14 +33,16 @@
 					OK
 				</a></center>
 			</div>
-			
-			
-		</div><!-- /content -->
-			
+			-->
+
+		</div>
+		<!-- /content -->
+
 		<div data-role="footer">
 			<h4>FIUSAC</h4>
-		</div><!-- /footer -->
-		
+		</div>
+		<!-- /footer -->
+
 		<div data-role="panel" data-position="left"
 			data-position-fixed="false" data-display="reveal" id="nav-panel"
 			data-theme="a">
@@ -52,14 +57,15 @@
 				<li><a href="salir.html">Salir</a></li>
 			</ul>
 		</div>
-		
+
 		<script src="scripts/detalleCurso.js"></script>
 		<script src="scripts/bdMiHorario.js"></script>
-		
-		<!-- /panel -->
-	</div><!-- /page two -->
 
-	
+		<!-- /panel -->
+	</div>
+	<!-- /page two -->
+
+
 </body>
 </html>
 
