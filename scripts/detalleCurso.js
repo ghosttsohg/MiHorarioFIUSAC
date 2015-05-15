@@ -35,7 +35,7 @@ $(document)
 										if (p == 14 || p == 3 || p == 7
 												|| p == 15 || p == 4 || p == 8) {
 											var service_table = $('<table data-role="table"  data-mode="reflow" class="ui-responsive table-stroke" id="service"></table>');
-											var service_tr_th = $("<thead><tr><th>C&oacutedigo</th><th>Curso</th><th>Jornada</th><th>Salon</th><th>Hora</th><th>D&iacutea</th><th>Catedr&aacutetico</th><th>periodo</th></tr></thead>");
+											var service_tr_th = $("<thead><tr><th>C&oacutedigo</th><th>Curso</th><th>Jornada</th><th>Sal&oacuten</th><th>Hora</th><th>D&iacutea</th><th>Catedr&aacutetico</th><th>periodo</th></tr></thead>");
 											var service_tbody = $('<tbody></tbody>');
 											var service_tr = $('<tr></tr>');
 
@@ -68,7 +68,7 @@ $(document)
 											);
 										} else {
 											var service_table = $('<table data-role="table"  data-mode="reflow" class="ui-responsive table-stroke" id="service"></table>');
-											var service_tr_th = $("<thead><tr><th>C&oacutedigo</th><th>Curso</th><th>Secci&oacuten</th><th>Salon</th><th>Hora</th><th>D&iacuteas</th><th>Catedr&aacutetico</th><th>periodo</th></tr></thead>");
+											var service_tr_th = $("<thead><tr><th>C&oacutedigo</th><th>Curso</th><th>Secci&oacuten</th><th>Sal&oacuten</th><th>Hora</th><th>D&iacuteas</th><th>Catedr&aacutetico</th><th>periodo</th></tr></thead>");
 											var service_tbody = $('<tbody></tbody>');
 											var service_tr = $('<tr></tr>');
 

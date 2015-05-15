@@ -4,7 +4,7 @@ var app = {};
 app.db = null;
 
 app.openDb = function() {
-	app.db = window.openDatabase("PushAndSync", "1.0", "PushAndSync", 500000);
+	app.db = window.openDatabase("MiHorario", "1.0", "MiHorario", 500000);
 }
 
 app.createTable = function() {
@@ -162,7 +162,7 @@ app.addToCalendar = function(idPeriodo, dia, curso, jornada, salon, hora) {
 			arrayHora[1], 0, 0, 0);
 	var endDate = new Date(anio, mes, arrayDia[1], parseInt(arrayHora[0]) + 1,
 			arrayHora[1], 0, 0, 0);
-	var title = "Exámen: " + curso;
+	var title = "Examen: " + curso;
 	var eventLocation = salon;
 	var notes = "Jornada: " + jornada;
 	var success = function(message) {
@@ -214,7 +214,7 @@ app.refresh = function() {
 					+ "<p>Jornada: "
 					+ row.seccion
 					+ "</p>"
-					+ "<p>Salon: "
+					+ "<p>Sal&oacuten: "
 					+ row.salon
 					+ "</p>"
 					+ "<p>Hora: "
@@ -261,7 +261,7 @@ app.refresh = function() {
 					+ "<p>Secci&oacuten: "
 					+ row.seccion
 					+ "</p>"
-					+ "<p>Salon: "
+					+ "<p>Sal&oacuten: "
 					+ row.salon
 					+ "</p>"
 					+ "<p>Hora: "
@@ -270,7 +270,7 @@ app.refresh = function() {
 					+ "<p>D&iacutea: "
 					+ row.dias
 					+ "</p>"
-					+ "<p>Catedratico: "
+					+ "<p>Catedr&aacutetico: "
 					+ row.catedratico
 					+ "</p>"
 					+ "</a><a href=\"#\"  onclick='showConfirm("
@@ -284,12 +284,21 @@ app.refresh = function() {
 	var render = function(tx, rs) {
 		var rowOutput = "";
 		var todoItems = document.getElementById("todoItems");
-
+		var hayCursos = false;
+		
 		for (var i = 0; i < rs.rows.length; i++) {
 			rowOutput += renderTodo(rs.rows.item(i));
+			hayCursos = true;
 		}
 
 		todoItems.innerHTML = rowOutput;
+		
+		if(!hayCursos){
+			$("#botonBorrar").hide();
+			window.plugins.toast
+			.showShortCenter('Ve a la sección de cursos o exámenes para agregar nuevos horarios');
+			
+		}
 
 		$("#todoItems").listview({
 			autodividers : true,

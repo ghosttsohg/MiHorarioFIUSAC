@@ -45,7 +45,7 @@ $(document)
 				"pagecreate",
 				"#pageone",
 				function() {
-
+					
 					$("#listacursos")
 							.on(
 									"filterablebeforefilter",
@@ -53,19 +53,10 @@ $(document)
 										var $ul = $(this), $input = $(data.input), value = $
 												.trim($input.val()), html = "";
 										$ul.html("");
-										if (value && value.length > 3) { // Ignoramos
-																			// preposiciones
-																			// y
-																			// articulos,
-																			// longitud
-																			// minima
-																			// de
-																			// palabra
-																			// en
-																			// curso
-																			// 4chars
-											$ul
-													.html("<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>");
+										
+										if (value && value.length > 3) { 
+											
+											$ul.html("<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>");
 											// $ul.listview( "refresh" );
 											var url = "http://externo.icon.com.gt/HorarioUsac/servicios/horarios?id="
 													+ periodo;
@@ -186,7 +177,7 @@ function mostrarToast() {
 	var now = (new Date()).getTime();
 	if((now-lastToast) > 10000){
 		window.plugins.toast
-		.showShortCenter('No hay horarios publicados que coincidan con tu busqueda.');
+		.showShortCenter('No hay horarios publicados que coincidan con tu búsqueda.');
 		lastToast = now;
     }
 	
