@@ -57,7 +57,8 @@ $(document)
 										if (value && value.length > 3) { 
 											
 											$ul.html("<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>");
-											// $ul.listview( "refresh" );
+											$ul.listview( "refresh" );
+											$ul.trigger("updatelayout");
 											var url = "http://externo.icon.com.gt/HorarioUsac/servicios/horarios?id="
 													+ periodo;
 											// var url =
@@ -76,13 +77,15 @@ $(document)
 															})
 													.then(
 															function(result) {
+																$ul.html("");
 																$('ul')
 																		.listview(
 																				'refresh');
+																$ul.trigger("updatelayout");
 																var list = "";
 																var nombreCurso = "";
-																var tipo = "Clase Magistral";
 																for (var i = 0, l = result.length; i < l; i++) {
+																	var tipo = "Clase Magistral";
 																	var detalle = "";
 																	var complemento = "";
 																	console

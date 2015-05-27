@@ -147,9 +147,9 @@ app.addToCalendar = function(idPeriodo, dia, curso, jornada, salon, hora) {
 	else if (idPeriodo == 15)
 		mes = 10;
 	else if (idPeriodo == 3)
-		mes = 5;
+		mes = 4;
 	else if (idPeriodo == 4)
-		mes = 11;
+		mes = 10;
 	else if (idPeriodo == 7)
 		mes = 6;
 	else if (idPeriodo == 8)
