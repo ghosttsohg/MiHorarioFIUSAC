@@ -35,11 +35,12 @@ $(document)
 										if (p == 14 || p == 3 || p == 7
 												|| p == 15 || p == 4 || p == 8) {
 											var service_table = $('<table data-role="table"  data-mode="reflow" class="ui-responsive table-stroke" id="service"></table>');
-											var service_tr_th = $("<thead><tr><th>C&oacutedigo</th><th>Curso</th><th>Jornada</th><th>Sal&oacuten</th><th>Hora</th><th>D&iacutea</th><th>Catedr&aacutetico</th><th>periodo</th></tr></thead>");
+											var service_tr_th = $("<thead><tr><th>C&oacutedigo</th><th>Curso</th><th>Jornada</th><th>Sal&oacuten</th><th>Hora</th><th>D&iacutea</th><th>Catedr&aacutetico</th><th>periodo</th><th>tipoid</th></tr></thead>");
 											var service_tbody = $('<tbody></tbody>');
 											var service_tr = $('<tr></tr>');
 
 											var dias = "- ";
+
 
 											var service_name_td = $('<td><label id="codigo">'
 													+ data["codigoCurso"]
@@ -64,11 +65,14 @@ $(document)
 													+ '<td style="display:none;><label id="catedratico"></label></td>'
 													+ '<td style="display:none;"><label id="periodo">'
 													+ p + '</label></td>'
+													+ '<td style="display:none;"><label id="tipoid">'
+													+ p + '</label></td>'
+
 
 											);
 										} else {
 											var service_table = $('<table data-role="table"  data-mode="reflow" class="ui-responsive table-stroke" id="service"></table>');
-											var service_tr_th = $("<thead><tr><th>C&oacutedigo</th><th>Curso</th><th>Secci&oacuten</th><th>Sal&oacuten</th><th>Hora</th><th>D&iacuteas</th><th>Catedr&aacutetico</th><th>periodo</th></tr></thead>");
+											var service_tr_th = $("<thead><tr><th>C&oacutedigo</th><th>Curso</th><th>Secci&oacuten</th><th>Sal&oacuten</th><th>Hora</th><th>D&iacuteas</th><th>Tipo</th><th>Catedr&aacutetico</th><th>periodo</th><th>tipoid</th></tr></thead>");
 											var service_tbody = $('<tbody></tbody>');
 											var service_tr = $('<tr></tr>');
 
@@ -93,6 +97,18 @@ $(document)
 												dias = dias + "Sab - ";
 											}
 
+var tipo = 'Clase magistral';
+if(data["tipo"]=='2')
+	tipo = 'Laboratorio';
+else if(data["tipo"]=='3')
+	tipo = 'Trabajo dirigido';
+else if(data["tipo"]=='4')
+	tipo = 'Dibujo';
+else if(data["tipo"]=='5')
+	tipo = 'Práctica';
+
+
+
 											var service_name_td = $('<td><label id="codigo">'
 													+ data["codigoCurso"]
 													+ '</label></td>'
@@ -115,11 +131,16 @@ $(document)
 													+ '<td><label id="dias">'
 													+ dias
 													+ '</label></td>'
+													+ '<td><label id="tipo">'
+													+ tipo
+													+ '</label></td>'
 													+ '<td><label id="catedratico">'
 													+ data["catedratico"]
 													+ '</label></td>'
 													+ '<td style="display:none;"><label id="periodo">'
 													+ p + '</label></td>'
++ '<td style="display:none;"><label id="tipoid">'
+													+ data["tipo"] + '</label></td>'
 
 											);
 

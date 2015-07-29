@@ -88,6 +88,7 @@ $(document)
 																	var tipo = "Clase Magistral";
 																	var detalle = "";
 																	var complemento = "";
+																	var color = '#212121';
 																	console
 																			.debug("Tipo: "
 																					+ result[i]["tipo"]);
@@ -105,12 +106,16 @@ $(document)
 																	// ]
 																	if (result[i]["tipo"] === 2) {
 																		tipo = "Laboratorio";
+																		color = '#3F51B5';
 																	} else if (result[i]["tipo"] === 3) {
 																		tipo = "Trabajo Dirigido"
+																		color = '#7E57C2';
 																	} else if (result[i]["tipo"] === 4) {
-																		tipo = "Dibujo"
+																		tipo = "Dibujo";
+																		color = '#4CAF50';
 																	} else if (result[i]["tipo"] === 5) {
-																		tipo = "Práctica"
+																		tipo = "Práctica";
+																		color = '#F44336';
 																	}
 
 																	
@@ -138,7 +143,7 @@ $(document)
 																			+ detalle
 																			+ "</p></a>";
 
-																	nombreCurso = "<a href=\"detallecurso.html?p="
+																	nombreCurso = "<a style=\"color:"+color+"\" href=\"detallecurso.html?p="
 																			+ periodo
 																			+ "&ic="
 																			+ result[i]["idCurso"]

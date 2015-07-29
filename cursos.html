@@ -22,32 +22,39 @@
 		<!-- /header -->
 
 		<div role="main" class="ui-content">
-			<h4 class = "consultas">Regulares</h4>
-			<p class = "consultas">
-				<a href="listaCursos.html?periodo=1"
-					class="ui-btn ui-shadow ui-corner-all">Primer Semestre</a>
-			</p>
-			<p class = "consultas">
-				<a href="listaCursos.html?periodo=5"
-					class="ui-btn ui-shadow ui-corner-all">Segundo Semestre</a>
-			</p>
-			<h4 class = "consultas">Vacaciones</h4>
-			<p class = "consultas">
-				<a href="listaCursos.html?periodo=2"
-					class="ui-btn ui-shadow ui-corner-all">Junio</a>
-			</p>
-			<p class = "consultas">
-				<a href="listaCursos.html?periodo=6"
-					class="ui-btn ui-shadow ui-corner-all">Diciembre</a>
-			</p>
+
+
+<ul data-role="listview" data-inset="true">
+      <li>
+        <a href="listaCursos.html?periodo=1"> 
+          <img src="img/2/1.png"><h2>Primer semestre </h2><p>Cursos regulares</p>
+	</a>	  
+	
+      </li>
+      <li data-role="list-divider"></li>
+      <li>
+        <a href="listaCursos.html?periodo=5">
+          <img src="img/2/2.png"><h2>Segundo semestre </h2><p>Cursos regulares</p>
+	</a>
+      </li>
+	<li data-role="list-divider"></li>
+      <li>
+        <a href="listaCursos.html?periodo=2">
+          <img src="img/2/J.png"><h2>Junio</h2><p>Cursos de vacaciones</p>
+	</a>
+      </li>
+      <li data-role="list-divider"></li>
+      <li>
+        <a href="listaCursos.html?periodo=6">
+          <img src="img/2/D.png"><h2>Diciembre</h2><p>Cursos de vacaciones</p>
+	</a>
+      </li>
+
+    </ul>			
+
 
 		</div>
 		<!-- /content -->
-
-		<div data-role="footer" data-theme="a">
-			<h1>FIUSAC</h1>
-		</div>
-		<!-- /footer -->
 
 		<div data-role="panel" data-position="left"
 			data-position-fixed="false" data-display="reveal" id="nav-panel"
@@ -57,10 +64,9 @@
 				style="margin-top: -16px;" class="nav-search">
 				<li data-icon="delete" style="background-color: #111;"><a
 					href="#" data-rel="close">Ocultar menú</a></li>
-				<li><a href="mi_horario.html">Mi horario</a></li>
+				<li><a href="mi_horario.html"><img src="img/1/Horario.png" class="ui-li-icon">Mi horario</a></li>
 				<li><h5>Cursos</h5></li>
-				<li><a href="examenes.html">Exámenes</a></li>
-				<li><a href="salir.html">Salir</a></li>
+				<li><a href="examenes.html"><img src="img/1/Examen.png" class="ui-li-icon">Exámenes</a></li>				<li><a href="salir.html">Salir</a></li>
 			</ul>
 		</div>
 		<!-- /panel -->		

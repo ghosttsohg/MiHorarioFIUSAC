@@ -4,7 +4,7 @@ var app = {};
 app.db = null;
 
 app.openDb = function() {
-	app.db = window.openDatabase("MiHorario", "1.0", "MiHorario", 500000);
+	app.db = window.openDatabase("MiHorario2", "1.1", "MiHorario2", 500000);
 }
 
 app.createTable = function() {
@@ -13,13 +13,13 @@ app.createTable = function() {
 			.transaction(function(tx) {
 				tx
 						.executeSql(
-								"CREATE TABLE IF NOT EXISTS bdMiHorario2(ID INTEGER PRIMARY KEY ASC, periodoId  INTEGER, codigo TEXT, curso TEXT, seccion TEXT, salon TEXT, hora TEXT, dias TEXT, catedratico TEXT, added_on DATETIME)",
+								"CREATE TABLE IF NOT EXISTS bdMiHorario2(ID INTEGER PRIMARY KEY ASC, periodoId  INTEGER, codigo TEXT, curso TEXT, seccion TEXT, salon TEXT, hora TEXT, dias TEXT, catedratico TEXT, added_on DATETIME, tipo INTEGER)",
 								[]);
 			});
 }
 
 app.addTodo = function(periodoId, codigo, curso, seccion, salon, hora, dias,
-		catedratico) {
+		catedratico,tipo) {
 	var db = app.db;
 	db
 			.transaction(function(tx) {
@@ -34,7 +34,10 @@ app.addTodo = function(periodoId, codigo, curso, seccion, salon, hora, dias,
 						.executeSql(
 								'SELECT COUNT(*) AS c FROM  bdMiHorario2 where periodoId = '
 										+ periodoId + ' and codigo="' + codigo
-										+ '"',
+										+ '" and dias="'+dias
+										+ '" and hora="'+hora
+										+ '" and seccion="'+seccion
+										+ '" and tipo='+tipo,
 								[],
 								function(tx, r) {
 									if (r.rows.item(0).c > 0) {
@@ -51,13 +54,13 @@ app.addTodo = function(periodoId, codigo, curso, seccion, salon, hora, dias,
 
 										tx
 												.executeSql(
-														"INSERT INTO bdMiHorario2(periodoId, codigo, curso, seccion, salon, hora, dias, catedratico, added_on) VALUES (?,?,?,?,?,?,?,?,?)",
+														"INSERT INTO bdMiHorario2(periodoId, codigo, curso, seccion, salon, hora, dias, catedratico, added_on,tipo) VALUES (?,?,?,?,?,?,?,?,?,?)",
 														[ periodoId, codigo,
 																curso, seccion,
 																salon, hora,
 																dias,
 																catedratico,
-																addedOn ],
+																addedOn, tipo ],
 														app.onSuccess,
 														app.onError);
 										// lblMensaje.innerHTML = "El curso se
@@ -200,13 +203,25 @@ app.refresh = function() {
 		else if (row.periodoId == 2)
 			periodoName = "Segundo Semestre";
 
+		var codigoColor = '#212121';
+
+		if(row.tipo==2)
+			codigoColor = '#3F51B5';
+		else if (row.tipo==3)
+			codigoColor = '#7E57C2';			
+		else if (row.tipo==4)
+			codigoColor = '#4CAF50';		
+		else if (row.tipo==5)
+			codigoColor = '#F44336';			
+	
+
 		if (row.periodoId == 14 || row.periodoId == 3 || row.periodoId == 7
 				|| row.periodoId == 15 || row.periodoId == 4
 				|| row.periodoId == 8) {
-			return "<li periodo='"
+			return "<li style=\"color:#FF5722\" periodo='"
 					+ periodoName
 					+ "' data-icon='delete' class='ui-first-child ui-last-child'><a href='#' class='ui-icon-delete'>"
-					+ "<h2>"
+					+ "<h2 style=\"color:#FF5722\">"
 					+ row.codigo
 					+ " "
 					+ row.curso
@@ -253,7 +268,7 @@ app.refresh = function() {
 			return "<li periodo='"
 					+ periodoName
 					+ "' data-icon='delete' class='ui-first-child ui-last-child'><a href='#' class='ui-icon-delete'>"
-					+ "<h2>"
+					+ "<h2 style=\"color:"+codigoColor+"\">"
 					+ row.codigo
 					+ " "
 					+ row.curso
@@ -312,7 +327,7 @@ app.refresh = function() {
 
 	var db = app.db;
 	db.transaction(function(tx) {
-		tx.executeSql("SELECT * FROM bdMiHorario2 ORDER BY periodoId", [],
+		tx.executeSql("SELECT * FROM bdMiHorario2 ORDER BY periodoId, codigo", [],
 				render, app.onError);
 	});
 }
@@ -332,9 +347,10 @@ function addTodo() {
 	var dias = $("#dias").text();
 	var catedratico = $("#catedratico").text();
 	var periodo = $("#periodo").text();
+	var tipo = $("#tipoid").text();
 	app
 			.addTodo(periodo, codigo, curso, seccion, salon, hora, dias,
-					catedratico);
+					catedratico,tipo);
 }
 
 function selectAll() {
